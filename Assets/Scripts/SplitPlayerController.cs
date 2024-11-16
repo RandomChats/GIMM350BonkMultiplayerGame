@@ -5,22 +5,33 @@ using UnityEngine.InputSystem;
 
 public class SplitPlayerController : MonoBehaviour
 {
+//starting
     private bool gameStarted = false;
     private int PlayerNumber;
 
+//jumping
     private Vector3 jumpForce = new Vector3(0, 5, 0);
     private bool isJumping = false;
 
-    private float moveSpeed = 5;
+//movement
+    private float moveSpeed = 10;
     private Vector3 movementDirection;
     public InputActionReference movementP1;
     public InputActionReference movementP2;
     public InputActionAsset player2M;
 
-    private float rotationSpeed = 25;
+//looking
+    private float rotationSpeed = 50;
     private Vector3 lookDirection;
     public InputActionReference lookP1;
     public InputActionReference lookP2;
+
+//shooting
+    public GameObject bulletPrefab;
+    public float shootCoolDown = 0.5f;
+    public InputActionReference shootP1;
+    public InputActionReference shootP2;
+    public Transform bulletSpawn;
 
     public void OnLook()
     {
@@ -58,6 +69,38 @@ public class SplitPlayerController : MonoBehaviour
             case 1:
                 movementDirection = movementP2.action.ReadValue<Vector2>();
                 break;
+        }
+    }
+
+    public void OnShoot()
+    {
+        switch (PlayerNumber)
+        {
+            case 0:
+                if (Time.time > shootCoolDown && shootP1.action.triggered)
+                {
+                    Shoot();
+                }
+                break;
+            case 1:
+                if (Time.time > shootCoolDown && shootP2.action.triggered)
+                {
+                    Shoot();
+                }
+                break;
+        }
+    }
+
+    public void Shoot()
+    {
+        shootCoolDown = Time.time + 0.5f;
+
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+        bullet.GetComponent<Rigidbody>().AddForce(bulletSpawn.transform.forward * 50, ForceMode.Impulse);
         }
     }
 

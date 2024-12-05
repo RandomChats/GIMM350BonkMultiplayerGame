@@ -32,9 +32,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        healthText.text = "Health: " + health;
-        UpdateHealthTextPosition();
-        UpdateDeathTextPosition();
+        if (healthText != null)
+        {
+            healthText.text = "Health: " + health;
+            UpdateHealthTextPosition();
+            UpdateDeathTextPosition();
+        }
     }
 
     public void TakeDamage(float amount)

@@ -55,6 +55,11 @@ public class RobotStateController : MonoBehaviour
         }
     }
 
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
+    }
+
     public void SetPlayerScore(PlayerScore score)
     {
         playerScore = score;

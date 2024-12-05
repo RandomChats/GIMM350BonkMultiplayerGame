@@ -20,8 +20,11 @@ public class PlayerScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + score;
-        UpdateScoreTextPosition();
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
+            UpdateScoreTextPosition();
+        }
     }
 
     public void AddScore(int points)

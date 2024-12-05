@@ -97,7 +97,7 @@ public class RobotStateController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject bullet)
     {
         health -= damage;
         Debug.Log("Robot Health: " + health);
@@ -108,11 +108,20 @@ public class RobotStateController : MonoBehaviour
 
         if (health <= 0)
         {
-           PlayerScore playerScore = player.GetComponent<PlayerScore>();
-            if (playerScore != null)
-            {
-                playerScore.AddScore(10);
-                Debug.Log($"Player {player.name} killed the robot and received 10 points.");
+            if (bullet.CompareTag("playerOne")) {
+                Debug.Log("Player One Scored");
+                GameObject playerOne = GameObject.FindGameObjectWithTag("playerOne");
+                PlayerScore playerOneScore = playerOne.GetComponent<PlayerScore>();
+                if (playerOneScore != null) {
+                    playerOneScore.GetComponent<PlayerScore>().AddScore(10);
+                }
+            } else if (bullet.CompareTag("playerTwo")) {
+                Debug.Log("Player Two Scored");
+                GameObject playerTwo = GameObject.FindGameObjectWithTag("playerTwo");
+                PlayerScore playerTwoScore = playerTwo.GetComponent<PlayerScore>();
+                if (playerTwoScore != null) {
+                    playerTwoScore.GetComponent<PlayerScore>().AddScore(10);
+                }
             }
             Destroy(gameObject);
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ private float lastShootTime;
 
     public void Shoot()
     {
+        Debug.Log("Player Shoot: ");
         lastShootTime = Time.time;
 
         GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, gun.transform.rotation);

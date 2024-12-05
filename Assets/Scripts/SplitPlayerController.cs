@@ -93,10 +93,12 @@ public class SplitPlayerController : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.Log("Player Shoot: " + this.gameObject.tag);
+
         shootCoolDown = Time.time + 0.5f;
 
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-
+        bullet.gameObject.tag = this.gameObject.tag;
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -114,12 +116,16 @@ public class SplitPlayerController : MonoBehaviour
             case 0:
                 transform.position = new Vector3(-5, 1, 0);
                 this.gameObject.name = "Player1";
+                this.gameObject.tag = "playerOne";
+                pm.GetComponent<PlayerManager>().SpawnPlayer1();
                 this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
                 //GameObject.Find("Body").GetComponent<RobotStateController>().SetPlayer(this.gameObject);
                 break;
             case 1:
                 transform.position = new Vector3(5, 1, 0);
                 this.gameObject.name = "Player2";
+                this.gameObject.tag = "playerTwo";
+                pm.GetComponent<PlayerManager>().SpawnPlayer2();
                 this.gameObject.GetComponent<Renderer>().material.color = Color.red;
                 this.gameObject.GetComponent<PlayerInput>().actions = player2M;
                 break;

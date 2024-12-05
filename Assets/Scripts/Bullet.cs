@@ -2,28 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
-    public float damage = 10f;
-    public float lifeTime = 5f;
+public class Bullet : MonoBehaviour {
+  public float damage = 10f;
+  public float lifeTime = 5f;
 
-    void Start()
-    {
-        StartCoroutine(DestroyBullet());
-    }
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<RobotStateController>().TakeDamage(damage, this.gameObject);
-            Destroy(gameObject);
-        }
-    }
+  void Start() {
+    StartCoroutine(DestroyBullet());
+  }
 
-    private IEnumerator DestroyBullet()
-    {
-        yield return new WaitForSeconds(lifeTime);
-        Destroy(gameObject);
+  private void OnCollisionEnter(Collision collision) {
+    if (collision.gameObject.tag == "Enemy") {
+      collision.gameObject.GetComponent<RobotStateController>().TakeDamage(damage, this.gameObject);
+      Destroy(gameObject);
     }
+  }
+
+  private IEnumerator DestroyBullet() {
+    yield return new WaitForSeconds(lifeTime);
+    Destroy(gameObject);
+  }
 }

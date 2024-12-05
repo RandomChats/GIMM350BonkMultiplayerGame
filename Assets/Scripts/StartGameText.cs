@@ -4,37 +4,32 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
-public class StartGameText : MonoBehaviour
-{
-    public GameObject startPanel;
-    public TextMeshProUGUI startText;
+public class StartGameText : MonoBehaviour {
+  public GameObject startPanel;
+  public TextMeshProUGUI startText;
 
-    private bool gameStarted = false;
-    public InputActionReference start;
-    
-    void OnEnable()
-    {
-        start.action.Enable();
-        start.action.performed += OnStartPressed;
-    }
+  private bool gameStarted = false;
+  public InputActionReference start;
 
-    void OnDisable()
-    {
-        start.action.Disable();
-        start.action.performed -= OnStartPressed;
+  void OnEnable() {
+    start.action.Enable();
+    start.action.performed += OnStartPressed;
+  }
+
+  void OnDisable() {
+    start.action.Disable();
+    start.action.performed -= OnStartPressed;
+  }
+
+  void OnStartPressed(InputAction.CallbackContext context) {
+    if (!gameStarted) {
+      StartGame();
     }
-    void OnStartPressed(InputAction.CallbackContext context)
-    {
-        if (!gameStarted)
-        {
-            StartGame();
-        }
-    }
-    
-    void StartGame()
-    {
-        startPanel.SetActive(false);
-        startText.gameObject.SetActive(false);
-        gameStarted = true;
-    }
+  }
+
+  void StartGame() {
+    startPanel.SetActive(false);
+    startText.gameObject.SetActive(false);
+    gameStarted = true;
+  }
 }

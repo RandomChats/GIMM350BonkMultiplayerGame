@@ -12,6 +12,8 @@ public class RobotStateController : MonoBehaviour {
   private PlayerScore playerScore;
   public string TargetPlayerName { get; set; }
 
+  [SerializeField] private Transform spawnLocation;
+
   //misc robot objects
   public GameObject scanner;
   public RobotState currentState;
@@ -38,8 +40,17 @@ public class RobotStateController : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
+    Debug.Log("Glorp Glorp!!!!");
     robot = GetComponent<NavMeshAgent>();
     currentDestination = RandomDestination();
+    Debug.Log(currentDestination);
+    
+    if (currentDestination == null) {
+      Debug.Log("I am broken!!!!");
+
+      currentDestination = RandomDestination();
+      Debug.Log(currentDestination);
+    }
     SetState(new RobotWorking(this));
   }
 

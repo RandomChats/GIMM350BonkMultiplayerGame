@@ -284,6 +284,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 4313412015852217393, guid: 0f519e60a4fa3d34497fc96011efb934, type: 3}
   playerPrefab2: {fileID: 4313412015852217393, guid: 0f519e60a4fa3d34497fc96011efb934, type: 3}
   playerControl: {fileID: 833610321203661130, guid: 0f519e60a4fa3d34497fc96011efb934, type: 3}
+  spawnLocation: {fileID: 0}
   scanner: {fileID: 5682633825407200767}
   destinations:
   - {fileID: 0}

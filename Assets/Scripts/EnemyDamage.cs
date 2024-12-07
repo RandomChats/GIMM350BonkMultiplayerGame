@@ -4,21 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyDamage : MonoBehaviour {
-  public PlayerHealth playerHealth;
+    public int damage = 2;
 
-  public int damage = 2;
 
-  // Start is called before the first frame update
-  void Start() {
-  }
-
-  // Update is called once per frame
-  void Update() {
-  }
-
-  private void OnCollisionEnter(Collision collision) {
-    if (collision.gameObject.tag == "Player") {
-      playerHealth.TakeDamage(damage);
+    // Start is called before the first frame update
+    void Start() {
     }
-  }
+
+    // Update is called once per frame
+    void Update() {
+    }
+
+    private void OnTriggerEnter(Collider c) {
+        if (c.gameObject.tag == "playerOne") {
+            Debug.Log("Player One Hit");
+            c.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+        else if (c.gameObject.tag == "playerTwo") {
+            Debug.Log("Player Two Hit");
+            c.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+    }
 }

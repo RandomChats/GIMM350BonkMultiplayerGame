@@ -753,11 +753,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54771663}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &61805572 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7348307260841588241, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
-  m_PrefabInstance: {fileID: 1664791923682201124}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &70981045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,6 +3266,8 @@ MonoBehaviour:
   player2Camera: {fileID: 0}
   player1ScoreText: {fileID: 0}
   player2ScoreText: {fileID: 0}
+  NovaEventSystem: {fileID: 1669081263}
+  playerTwoCanvasThing: {fileID: 1174062864}
 --- !u!114 &378301265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16277,7 +16274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8514997090938710465, guid: e751a68a089863342a223f7e669b396f, type: 3}
       propertyPath: m_Name
-      value: Nova'sSystemPlace
+      value: NovaEventManager
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8365362100839933359, guid: e751a68a089863342a223f7e669b396f, type: 3}
@@ -16874,6 +16871,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b267c34cb13314b96028bce785f9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 0
+  playerOneWin:
+    m_Handle: 0
+  playerTwoWin:
+    m_Handle: 0
+  playerLose:
+    m_Handle: 0
+  PlayersAlive: 0
+  player1Score: 0
+  player2Score: 0
 --- !u!1 &1676663368
 GameObject:
   m_ObjectHideFlags: 0
@@ -20863,10 +20870,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 607244066628728573, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b97c6104692039d43945f812c1c4e3d2, type: 2}
     - target: {fileID: 1235165441058560506, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.8
@@ -20908,9 +20911,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3978675332575199476, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
-      propertyPath: scanner
+      propertyPath: NovaEventSystem
       value: 
-      objectReference: {fileID: 61805572}
+      objectReference: {fileID: 1669081263}
     - target: {fileID: 3978675332575199476, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
       propertyPath: destinations.Array.data[0]
       value: 
@@ -20923,10 +20926,6 @@ PrefabInstance:
       propertyPath: destinations.Array.data[2]
       value: 
       objectReference: {fileID: 1981768251}
-    - target: {fileID: 6810531634769269155, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7348307260841588241, guid: 7087af1380bc4de44a72c273f6f0ab69, type: 3}
       propertyPath: m_Name
       value: Evil Glorp

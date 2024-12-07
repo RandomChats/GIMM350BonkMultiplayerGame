@@ -20,6 +20,7 @@ public class RobotStateController : MonoBehaviour {
   public List<Transform> destinations = new List<Transform>();
   public NavMeshAgent robot;
   public Transform currentDestination;
+  public GameObject NovaEventSystem;
 
   //materials
   public Material red;
@@ -102,6 +103,9 @@ public class RobotStateController : MonoBehaviour {
         GameObject playerOneScore = GameObject.FindGameObjectWithTag("playerOne");
         if (playerOneScore != null) {
           playerOneScore.GetComponent<PlayerScore>().AddScore(10);
+          NovaEventSystem.GetComponent<PlayerWinChecker>().player1Score = playerOneScore.GetComponent<PlayerScore>().score;
+          NovaEventSystem.GetComponent<PlayerWinChecker>().count--;
+          Debug.Log("Player One Score: " + NovaEventSystem.GetComponent<PlayerWinChecker>().player1Score);
           Debug.Log($"Player {player.name} killed the robot and received 10 points.");
         }
       } else if (bullet.CompareTag("playerTwo")) {
@@ -110,6 +114,8 @@ public class RobotStateController : MonoBehaviour {
         GameObject playerTwoScore = GameObject.FindGameObjectWithTag("playerTwo");
         if (playerTwoScore != null) {
           playerTwoScore.GetComponent<PlayerScore>().AddScore(10);
+          NovaEventSystem.GetComponent<PlayerWinChecker>().player2Score = playerTwoScore.GetComponent<PlayerScore>().score;
+          Debug.Log("Player Two Score: " + NovaEventSystem.GetComponent<PlayerWinChecker>().player2Score);
           Debug.Log($"Player {player.name} killed the robot and received 10 points.");
         }
       }

@@ -5,30 +5,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerWinChecker : MonoBehaviour {
-  private int count;
-  private GameObject playerOneScore;
-  private GameObject playerTwoScore;
+    public int count;
+    [SerializeField] private Scene playerOneWin;
+    [SerializeField] private Scene playerTwoWin;
+    [SerializeField] private Scene playerLose;
 
-  void Start() {
-    RobotStateController[] enemyCount = FindObjectsOfType<RobotStateController>();
+    public int PlayersAlive;
+    public int player1Score;
+    public int player2Score;
 
-    foreach (RobotStateController enemy in enemyCount) {
-      count++;
+
+    void Start() {
+        PlayersAlive = 2;
+        RobotStateController[] enemyCount = FindObjectsOfType<RobotStateController>();
+
+        foreach (RobotStateController enemy in enemyCount) {
+            count++;
+        }
     }
 
-    playerOneScore = GameObject.FindGameObjectWithTag("playerOne");
-    playerTwoScore = GameObject.FindGameObjectWithTag("playerTwo");
-  }
 
+    void Update() {
+       if (count == 0) {
+         if(player1Score > player2Score) {
+           SceneManager.LoadScene(1);
+         } else if(player1Score < player2Score) {
+           SceneManager.LoadScene(2);
+         }
+       }
 
- /* void update() {
-    if (count == 0) {
-      if(playerOneScore.GetComponent<PlayerScore>().score > playerTwoScore.GetComponent<PlayerScore>().score) {
-        SceneManager.LoadScene(playerOneWin);
-      } else if(playerOneScore.GetComponent<PlayerScore>().score < playerTwoScore.GetComponent<PlayerScore>().score) {
-        SceneManager.LoadScene(playerOneWin);
-      }
-      
-    }
-  }*/
+       if (PlayersAlive == 0) {
+           SceneManager.LoadScene(3);
+       }
+     }
 }

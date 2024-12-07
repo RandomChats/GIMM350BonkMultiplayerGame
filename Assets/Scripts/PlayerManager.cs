@@ -20,7 +20,9 @@ public class PlayerManager : MonoBehaviour {
   public Camera player2Camera;
   public TextMeshProUGUI player1ScoreText;
   public TextMeshProUGUI player2ScoreText;
+  public GameObject NovaEventSystem;
 
+  public GameObject playerTwoCanvasThing;
   public int CheckTotalPlayers() {
     return NumberOfPlayers;
   }
@@ -41,6 +43,7 @@ public class PlayerManager : MonoBehaviour {
     player1Health.healthTextOffset = new Vector3(0, 2, 0);
     player1Score.scoreTextOffset = new Vector3(0, 1, 0);
     player1Health.deathTextOffset = new Vector3(0, 0, 0);
+    NovaEventSystem.GetComponent<PlayerWinChecker>().PlayersAlive++;
 
     SetPlayerScoreForEnemy(player1Score, "Player1");
     Debug.Log("Player 1 Score and Camera assigned.");
@@ -58,6 +61,8 @@ public class PlayerManager : MonoBehaviour {
     player2Health.healthTextOffset = new Vector3(0, 2, 0);
     player2Score.scoreTextOffset = new Vector3(0, 1, 0);
     player2Health.deathTextOffset = new Vector3(0, 0, 0);
+    NovaEventSystem.GetComponent<PlayerWinChecker>().PlayersAlive++;
+    playerTwoCanvasThing.SetActive(false);
 
     SetPlayerScoreForEnemy(player2Score, "Player2");
     Debug.Log("Player 2 Score and Camera assigned.");

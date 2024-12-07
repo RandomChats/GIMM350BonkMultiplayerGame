@@ -31,7 +31,12 @@ public class SplitPlayerController : MonoBehaviour {
   public InputActionReference shootP1;
   public InputActionReference shootP2;
   public Transform bulletSpawn;
+  public GameObject NovaEventSystem;
 
+  private void Start() {
+    NovaEventSystem = GameObject.Find("NovaEventSystem");
+  }
+  
   public void OnLook() {
     switch (PlayerNumber) {
       case 0:
